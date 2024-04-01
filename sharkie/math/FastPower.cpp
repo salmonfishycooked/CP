@@ -7,7 +7,7 @@ using i64 = long long;
 i64 power(i64 x, int n, int m) {
     i64 res = 1;
     for (; n; n >>= 1) {
-        if (n & 1) res = res * x % m;
+        if (n & 1) { res = res * x % m; }
         x = x * x % m;
     }
 
