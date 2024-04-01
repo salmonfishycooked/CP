@@ -4,13 +4,13 @@
 
 
 
-## Some useful data structure template
+## ⚒️ Some useful data structure template
 
 such as **heap**, **segment tree**, **lazy segment tree**, **rmq**, **trie tree**...
 
 
 
-## Some Words
+## 🎉 Some Words
 
 **I hope this repo can help you!**
 
