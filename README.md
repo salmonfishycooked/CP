@@ -14,4 +14,4 @@ such as **heap**, **segment tree**, **lazy segment tree**, **rmq**, **trie tree*
 
 **I hope this repo can help you!**
 
-![IMG5324](./assets/IMG5324.jpg)
+![IMG_6132](./assets/IMG_6132.jpg)
