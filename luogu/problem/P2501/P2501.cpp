@@ -25,10 +25,12 @@ void solve() {
     i64 ans = LONG_LONG_MAX;
     std::vector<i64> g(n + 1, LONG_LONG_MAX);
     std::vector<i64> pre(n + 1), suf(n + 1);
+    std::vector<int> fIdx[n + 1];
+    fIdx[0].push_back(0);
     g[0] = 0;
     for (int i = 1; i <= n; i++) {
-        for (int j = 0; j < i; j++) {
-            if (f[j] + 1 != f[i] || j != 0 && b[j - 1] > b[i - 1]) { continue; }
+        for (auto j : fIdx[f[i] - 1]) {
+            if (j != 0 && b[j - 1] > b[i - 1]) { continue; }
             int leftV = j == 0 ? INT_MIN : b[j - 1], rightV = b[i - 1];
             pre[j] = 0, suf[i] = 0;
             for (int k = j + 1; k <= i - 1; k++) {
@@ -52,6 +54,7 @@ void solve() {
                 ans = std::min(ans, g[i] + afterChanged);
             }
         }
+        fIdx[f[i]].push_back(i);
     }
 
     std::cout << n - stayLen << '\n' << ans << '\n';
