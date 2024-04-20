@@ -7,7 +7,7 @@ void solve() {
     std::cin >> n;
 
     int total = 0;
-    std::vector<bool> col(n), lTr(2 * n), rTl(n);
+    std::vector<bool> col(n), lTr(2 * n), rTl(2 * n);
     std::vector<std::vector<int>> ans;
     std::vector<int> cur;
 
