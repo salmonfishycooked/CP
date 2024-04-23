@@ -13,6 +13,7 @@ using i64 = long long;
 class ModInv {
 public:
     const int mod;
+
     std::map<int, int> cache;
 
     explicit ModInv(int mod) : mod(mod) {}
