@@ -3,8 +3,12 @@
  * Kruskal 算法
  * 节点编号：1 ~ n
  *
+ *
  * 方法说明：
  * 1. bool go() 开始 Kruskal 算法，返回 true 代表原图连通，false 代表不连通
+ *
+ * 参数说明：
+ * 1. sum 代表 Kruskal 算法正确结束后（也就是原图连通），对应的最小生成树的所有边权之和
  *
  * 模板 template <typename T = int> 代表边权采用什么类型存储，默认为 int
  *
