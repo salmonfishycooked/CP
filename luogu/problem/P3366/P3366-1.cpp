@@ -42,13 +42,15 @@ public:
     int n;
     std::vector<Edge> edges;
 
+    T sum;
+
     explicit Kruskal(int _n) : n(_n) {}
 
     void addEdge(int from, int to, T weight) {
         edges.push_back({from, to, weight});
     }
 
-    T go() {
+    bool go() {
         UnionFind uf(n);
 
         std::sort(edges.begin(), edges.end(), [&](const Edge &a, const Edge &b) -> bool {
@@ -56,7 +58,7 @@ public:
         });
 
         int cnt = 0;
-        T sum = 0;
+        sum = 0;
         for (auto edge : edges) {
             int from = edge.from, to = edge.to, weight = edge.weight;
             if (uf.find(from) != uf.find(to)) {
@@ -69,7 +71,7 @@ public:
             }
         }
 
-        return cnt == n - 1 ? sum : -1;
+        return cnt == n - 1;
     }
 };
 
@@ -84,12 +86,12 @@ void solve() {
         kruskal.addEdge(v, u, w);
     }
 
-    int res = kruskal.go();
-    if (res == -1) {
+    bool connected = kruskal.go();
+    if (!connected) {
         std::cout << "orz" << '\n';
         return;
     }
-    std::cout << res << '\n';
+    std::cout << kruskal.sum << '\n';
 }
 
 int main() {
