@@ -3,8 +3,8 @@
  * 节点编号：1 ~ n
  *
  * 方法说明：
- * 1. _union(int u, int v) 将 v 所属的集合合并到 u 所属的集合中
- * 2. find(int u) 找到 u 所属集合的首领，并在查找过程中进行路径压缩
+ * 1. void _union(int u, int v) 将 v 所属的集合合并到 u 所属的集合中
+ * 2. int find(int u) 找到 u 所属集合的首领，并在查找过程中进行路径压缩
  */
 
 #include <bits/stdc++.h>
