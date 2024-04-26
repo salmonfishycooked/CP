@@ -3,7 +3,6 @@
  * Kruskal 算法
  * 节点编号：1 ~ n
  *
- *
  * 方法说明：
  * 1. bool go() 开始 Kruskal 算法，返回 true 代表原图连通，false 代表不连通
  *
