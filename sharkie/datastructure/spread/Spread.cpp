@@ -3,11 +3,8 @@
  * 将数组 arr 的所有数进行离散化处理【注意传入的 arr 必须是非降序排列！】
  * 并查询某个值 v 在离散化后的数组中的排名，排名从 0 开始。
  *
- * 时间复杂度：O(nlogn)
- * 空间复杂度：O(n)
- *
  * 方法说明：
- * 1. int getRank(int v) 返回值 v 在 arr 中的大小排名
+ * 1. int getRank(int v) 返回值 v 在 arr 中的大小排名，查询时间复杂度 O(logm)，m 为离散后数组的大小。
  */
 
 #include <bits/stdc++.h>
