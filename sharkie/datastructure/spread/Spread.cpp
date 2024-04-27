@@ -1,6 +1,6 @@
 /**
  * 离散化 (Spread)
- * 将数组 arr 的所有数进行离散化处理
+ * 将数组 arr 的所有数进行离散化处理【注意传入的 arr 必须是非降序排列！】
  * 并查询某个值 v 在离散化后的数组中的排名，排名从 0 开始。
  *
  * 时间复杂度：O(nlogn)
@@ -25,16 +25,15 @@ public:
     }
 private:
     void init(std::vector<int> &arr) {
-        std::set<int> s;
-        for (auto num : arr) {
-            s.insert(num);
-        }
-
-        auto n = s.size();
-        ele.resize(n);
-        auto it = s.begin();
-        for (int i = 0; it != s.end(); it++, i++) {
-            ele[i] = *it;
+        auto n = arr.size();
+        ele.reserve(n);
+        for (int i = 0; i < n; ) {
+            ele.push_back(arr[i]);
+            int next = i + 1;
+            while (next < n && arr[next] == arr[i]) {
+                next++;
+            }
+            i = next;
         }
     }
 };
