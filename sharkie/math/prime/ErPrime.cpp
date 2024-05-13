@@ -9,6 +9,8 @@
 
 #include <bits/stdc++.h>
 
+using i64 = int64_t;
+
 class ErPrime {
 public:
     std::vector<int> prime;
@@ -23,7 +25,7 @@ public:
         for (int i = 3; i <= n; i += 2) {
             if (vis[i]) { continue; }
             prime.push_back(i);
-            int next = i + i;
+            i64 next = (i64) i * i;
             while (next <= n) {
                 vis[next] = true;
                 next += i;
