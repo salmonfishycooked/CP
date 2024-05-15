@@ -49,17 +49,21 @@ int main() {
         std::cerr << "generator.cpp complied error!" << '\n';
         return 1;
     }
-    std::cout << "\033[0;32mcomplied ok!\033[0m";
+    std::cout << "\033[0;32mcomplied ok!\033[0m" << '\n';
 
+    int taskId = 1;
     std::time_t start = std::time(nullptr);
     while (true) {
+        std::cout << "TASK #" << taskId << ": ";
         system("generator.exe");
         system("ans.exe");
         system("main.exe");
         if (!judge()) {
-            std::cerr << "Judge has founded a difference!" << '\n';
+            std::cout << "\033[31;4mWRONG ANSWER\033[0m" << '\n';
             return 0;
         }
+        std::cout << "\033[0;32mPASSED\033[0m" << '\n';
+        taskId += 1;
 
         std::time_t now = std::time(nullptr);
         if (now - start >= TEST_TIME) {
