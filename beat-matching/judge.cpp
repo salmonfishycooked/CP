@@ -35,21 +35,34 @@ bool judge() {
     return s1 == s2;
 }
 
-int main() {
+/**
+ * compile used to compile source codes
+ * @return true if success
+ */
+bool compile() {
     std::cout << "compiling source code..." << '\n';
     if (system("g++ -o main.exe main.cpp")) {
         std::cerr << "main.cpp complied error!" << '\n';
-        return 1;
+        return false;
     }
     if (system("g++ -o ans.exe ans.cpp")) {
         std::cerr << "ans.cpp complied error!" << '\n';
-        return 1;
+        return false;
     }
     if (system("g++ -o generator.exe generator.cpp")) {
         std::cerr << "generator.cpp complied error!" << '\n';
-        return 1;
+        return false;
     }
     std::cout << "\033[0;32mcomplied ok!\033[0m" << '\n';
+
+    return true;
+}
+
+int main() {
+    bool compiledOK = compile();
+    if (!compiledOK) {
+        return 1;
+    }
 
     int taskId = 1;
     std::time_t start = std::time(nullptr);
@@ -63,14 +76,15 @@ int main() {
             return 0;
         }
         std::cout << "\033[0;32mPASSED\033[0m" << '\n';
-        taskId += 1;
 
         std::time_t now = std::time(nullptr);
         if (now - start >= TEST_TIME) {
             break;
         }
+
+        taskId += 1;
     }
 
-    std::cout << "\033[0;32mAll test cases passed! (total time used: " << TEST_TIME << "s)\033[0m"  << '\n';
+    std::cout << "\033[0;32mAll " << taskId << " test cases passed! (total time used: " << TEST_TIME << "s)\033[0m"  << '\n';
     return 0;
 }
