@@ -36,6 +36,21 @@ bool judge() {
 }
 
 int main() {
+    std::cout << "compiling source code..." << '\n';
+    if (system("g++ -o main.exe main.cpp")) {
+        std::cerr << "main.cpp complied error!" << '\n';
+        return 1;
+    }
+    if (system("g++ -o ans.exe ans.cpp")) {
+        std::cerr << "ans.cpp complied error!" << '\n';
+        return 1;
+    }
+    if (system("g++ -o generator.exe generator.cpp")) {
+        std::cerr << "generator.cpp complied error!" << '\n';
+        return 1;
+    }
+    std::cout << "\033[0;32mcomplied ok!\033[0m";
+
     std::time_t start = std::time(nullptr);
     while (true) {
         system("generator.exe");
