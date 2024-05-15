@@ -5,3 +5,16 @@ CMakeLists.txt
 
 main.cpp
 main.exe
+main.out
+
+ans.cpp
+ans.exe
+ans.out
+
+generator.cpp
+generator.exe
+
+judge.cpp
+judge.exe
+
+e.in
