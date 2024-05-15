@@ -74,25 +74,6 @@ void solve() {
     }
 
     int leftBound = rec[i].first, rightBound = rec[i].second;
-    if (giftIdx >= leftBound && giftIdx <= rightBound) {
-        if (giftIdx >= startIdx) {
-            for (int k = startIdx + 1; k <= rightBound; k++) {
-                std::cout << x[k].second + 1 << ' ';
-            }
-            for (int k = startIdx - 1; k >= leftBound; k--) {
-                std::cout << x[k].second + 1 << ' ';
-            }
-            return;
-        }
-
-        for (int k = startIdx - 1; k >= leftBound; k--) {
-            std::cout << x[k].second + 1 << ' ';
-        }
-        for (int k = startIdx + 1; k <= rightBound; k++) {
-            std::cout << x[k].second + 1 << ' ';
-        }
-        return;
-    }
     for (int k = leftBound; k <= rightBound; k++) {
         if (k != startIdx) {
             std::cout << x[k].second + 1 << ' ';
