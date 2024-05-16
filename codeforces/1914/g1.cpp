@@ -39,15 +39,9 @@ public:
             stk.push(u);
 
             for (auto v : adj[u]) {
-                // condition: tree edge (son)
-                if (!dfn[v]) {
-                    self(self, v);
-                    low[u] = std::min(low[u], low[v]);
-                    continue;
-                }
-                // condition: back edge, cross edge, forward edge
+                if (!dfn[v]) { self(self, v); }
                 if (inStack[v]) {
-                    low[u] = std::min(low[u], dfn[v]);
+                    low[u] = std::min(low[u], low[v]);
                 }
             }
 
