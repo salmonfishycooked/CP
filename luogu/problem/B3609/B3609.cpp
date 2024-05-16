@@ -2,6 +2,8 @@
 
 using i64 = int64_t;
 
+constexpr int MOD = 998244353;
+
 class SCC {
 public:
     int n;
@@ -31,13 +33,9 @@ public:
             stk.push(u);
 
             for (auto v : adj[u]) {
-                if (!dfn[v]) {
-                    self(self, v);
-                    low[u] = std::min(low[u], low[v]);
-                    continue;
-                }
+                if (!dfn[v]) { self(self, v); }
                 if (inStack[v]) {
-                    low[u] = std::min(low[u], dfn[v]);
+                    low[u] = std::min(low[u], low[v]);
                 }
             }
 
