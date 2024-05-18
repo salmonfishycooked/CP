@@ -1,6 +1,7 @@
 /**
  * 2-SAT (2-Satisfiability)
  * 节点编号：1 ~ 2*n
+ * 使用了 tarjan 算法求 SCC
  *
  * 方法说明：
  * 1. 构造方法 TwoSat(int _n)，_n 代表布尔变量的总数
