@@ -1,6 +1,6 @@
 /**
  * UVA 12558 - Egyptian Fractions (HARD version)
- * 迭代加深搜索(IDDFS) + 剪枝
+ * 迭代加深搜索 (IDDFS) + 剪枝
  */
 
 #include <bits/stdc++.h>
