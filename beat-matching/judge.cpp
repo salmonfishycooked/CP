@@ -18,17 +18,17 @@ bool judge() {
     int cnt1, cnt2;
     std::set<int> s1, s2;
 
-    freopen("ans.out", "r", stdin);
-    std::cin >> cnt1;
+    std::ifstream ansFile("ans.out");
+    ansFile >> cnt1;
     for (int i = 0, tmp; i < cnt1; i++) {
-        std::cin >> tmp;
+        ansFile >> tmp;
         s1.insert(tmp);
     }
 
-    freopen("main.out", "r", stdin);
-    std::cin >> cnt2;
+    std::ifstream mainFile("main.out");
+    mainFile >> cnt2;
     for (int i = 0, tmp; i < cnt2; i++) {
-        std::cin >> tmp;
+        mainFile >> tmp;
         s2.insert(tmp);
     }
 
