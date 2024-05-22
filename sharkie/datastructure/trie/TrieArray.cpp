@@ -3,6 +3,12 @@
  * 与链表实现不同的是，不手动需要 DFS 来释放分散的内存，最后会自动回收栈内存，
  * 回收 std::vector 的效率远比 DFS 回收所有分散内存高。
  *
+ * 方法说明：
+ * 1. void insert(const std::string &word) 向 Trie 中插入字符串 word
+ * 2. bool search(const std::string &word) 在 Trie 中搜索是否存在字符串 word，存在则返回 true，不存在则返回 false
+ * 3. bool startsWith(const std::string &prefix) 在 Trie 中搜索是否存在单词拥有前缀 prefix
+ * 4. int findNode(const std::string &word) 在 Trie 中查找单词 word 的终点 Node 的索引，若不存在该节点，返回 NONE
+ *
  * 参数说明：
  * 1. NONE 若一个节点的儿子索引值等于 NONE（这里设置为 -1），则代表这个节点没有儿子
  *
@@ -10,12 +16,6 @@
  * 1. children 是节点的儿子节点，从 'a' ~ 'z'，共 26 个字符
  * 2. passed 的值是有多少单词经过该节点
  * 3. exist 的值是有多少单词在这这个节点结尾
- *
- * 方法说明：
- * 1. void insert(const std::string &word) 向 Trie 中插入字符串 word
- * 2. bool search(const std::string &word) 在 Trie 中搜索是否存在字符串 word，存在则返回 true，不存在则返回 false
- * 3. bool startsWith(const std::string &prefix) 在 Trie 中搜索是否存在单词拥有前缀 prefix
- * 4. int findNode(const std::string &word) 在 Trie 中查找单词 word 的终点 Node 的索引，若不存在该节点，返回 NONE
  */
 
 #include <bits/stdc++.h>
