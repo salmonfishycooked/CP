@@ -274,6 +274,7 @@ public:
 
         return in;
     }
+
 private:
     /**
      * plusNoSign calculates the a + b, where a >= 0, b >= 0 (means without sign).
