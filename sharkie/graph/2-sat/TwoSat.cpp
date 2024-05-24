@@ -46,6 +46,7 @@ public:
 
         return true;
     }
+
 private:
     void tarjan() {
         sccCnt = 0;
