@@ -35,7 +35,7 @@ int solve(int n) {
                 cnt += 1;
             }
         }
-        if (nums[n - 1] != n) {
+        if (nums[0] != 1) {
             cnt += 1;
         }
 
@@ -44,7 +44,7 @@ int solve(int n) {
 
     int mxDepth;
     auto dfs = [&](auto self, std::vector<int> &nums, int depth) -> bool {
-        if(depth * 3 + h(nums) > mxDepth * 3) {
+        if(h(nums) > (mxDepth - depth) * 3) {
             return false;
         }
         if (depth == mxDepth) {
