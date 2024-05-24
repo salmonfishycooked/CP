@@ -20,6 +20,7 @@ public:
     int getRank(int v) {
         return std::lower_bound(ele.begin(), ele.end(), v) - ele.begin();
     }
+
 private:
     void init(std::vector<int> &arr) {
         auto n = arr.size();
