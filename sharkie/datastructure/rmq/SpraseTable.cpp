@@ -10,7 +10,8 @@
 
 #include <bits/stdc++.h>
 
-struct SparseTable {
+class SparseTable {
+public:
     int n;
     std::vector<std::vector<int>> f;
 
