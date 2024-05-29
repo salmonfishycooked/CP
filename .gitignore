@@ -6,6 +6,7 @@ CMakeLists.txt
 /main.cpp
 /main.exe
 /main.out
+/main
 
 /ans.cpp
 /ans.exe
