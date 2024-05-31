@@ -6,7 +6,7 @@
 
 ## ⚒️ Some useful data structure template
 
-such as **heap**, **segment tree**, **Binary Indexed Tree**, **rmq**, **trie tree**...
+such as **heap**, **segment tree**, **Binary Indexed Tree**, **rmq**, **trie tree**, **SCC**, **2-SAT**...
 
 
 
