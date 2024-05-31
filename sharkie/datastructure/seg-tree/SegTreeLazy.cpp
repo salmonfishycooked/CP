@@ -9,7 +9,7 @@
  *
  * 参数说明：
  * 1. Info，即线段树的每个节点需要掌管的信息。
- * 2. Tag，即线段树的每个节点的标记。
+ * 2. Tag，即线段树的每个节点的标记。注意每个节点的 Tag 的默认值，其 Tag 里的每个参数在 Tag 的无参构造函数里面初始化！
  *
  * 下面模板给出的是区间加，区间查询的示例。
  * 例题网址：https://www.luogu.com.cn/problem/P3372
@@ -25,6 +25,9 @@ class SegTree {
 public:
     struct Tag {
         i64 plus;
+
+        Tag() : plus(0) {}
+        Tag(i64 _plus) : plus(_plus) {}
 
         bool isNull() {
             return plus == 0;
