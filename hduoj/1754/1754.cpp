@@ -1,70 +1,92 @@
-/**
- * HDU 1754 - I Hate It
- * 使用树状数组查询区间最大值，以及单点修改
- */
-
 #include <bits/stdc++.h>
 
 using i64 = int64_t;
 
-template <typename T = i64>
-class BIT {
+template <typename T = int>
+class SegTree {
 public:
-    int n;
-    std::vector<T> tree;
-    std::vector<T> &a;
+    struct Info {
+        i64 v;
 
-    explicit BIT(int _n, std::vector<T> &_a) : n(_n), a(_a) {
-        tree.assign(n + 1, 0);
-    }
+        Info operator+(const Info &b) {
+            Info info;
+            info.v = std::max(v, b.v);
 
-    T max(int l, int r) {
-        i64 res = 0;
-        while (l <= r) {
-            if (r - lowBit(r) + 1 >= l) {
-                res = std::max(res, tree[r]);
-                r -= lowBit(r);
-                continue;
-            }
-            res = std::max(res, a[r]);
-            r--;
+            return info;
         }
-        return res;
-    }
+    };
+    std::vector<Info> seg;
 
-    void update(int x, T v) {
-        while (x <= n) {
-            tree[x] = v;
-            for (int i = 1; i < lowBit(x); i <<= 1) {
-                tree[x] = std::max(tree[x], tree[x - i]);
+    explicit SegTree(std::vector<T> &a) {
+        int n = a.size();
+        seg.resize(n * 4);
+
+        auto build = [&](auto self, int id, int l, int r) {
+            if (l == r) {
+                seg[id] = {a[l - 1]};
+                return;
             }
-            x += lowBit(x);
-        }
+
+            int mid = (l + r) >> 1;
+            self(self, id * 2, l, mid);
+            self(self, id * 2 + 1, mid + 1, r);
+            update(id);
+        };
+        build(build, 1, 1, n);
     }
 
-    int lowBit(int x) {
-        return x & -x;
+    void update(int id) {
+        seg[id] = seg[id * 2] + seg[id * 2 + 1];
+    }
+
+    void change(int id, int l, int r, int pos, T val) {
+        if (l == r) {
+            seg[id] = {val};
+            return;
+        }
+
+        int mid = (l + r) >> 1;
+        if (pos <= mid) {
+            change(id * 2, l, mid, pos, val);
+        } else {
+            change(id * 2 + 1, mid + 1, r, pos, val);
+        }
+        update(id);
+    }
+
+    Info query(int id, int l, int r, int ql, int qr) {
+        if (l == ql && r == qr) {
+            return seg[id];
+        }
+
+        int mid = (l + r) >> 1;
+        if (qr <= mid) {
+            return query(id * 2, l, mid, ql, qr);
+        } else if (ql > mid) {
+            return query(id * 2 + 1, mid + 1, r, ql, qr);
+        } else {
+            return query(id * 2, l, mid, ql, mid) + query(id * 2 + 1, mid + 1, r, mid + 1, qr);
+        }
     }
 };
 
 void solve(int n, int m) {
-    std::vector<i64> a(n + 1);
-    BIT tree(n, a);
-    for (int i = 1; i <= n; i++) {
+    std::vector<i64> a(n);
+    for (int i = 0; i < n; i++) {
         std::cin >> a[i];
-        tree.update(i, a[i]);
     }
 
+    SegTree<i64> tree(a);
     while (m--) {
-        char q;
-        i64 x1, x2;
-        std::cin >> q >> x1 >> x2;
-        if (q == 'Q') {
-            std::cout << tree.max(x1, x2) << '\n';
-            continue;
+        char op;
+        int x, y;
+        std::cin >> op >> x >> y;
+
+        if (op == 'Q') {
+            std::cout << tree.query(1, 1, n, x, y).v << '\n';
+        } else {
+            tree.change(1, 1, n, x, y);
         }
-        a[x1] = x2;
-        tree.update(x1, x2);
     }
 }
 
