@@ -7,6 +7,9 @@ public:
     struct Tag {
         i64 plus;
 
+        Tag() : plus(0) {}
+        Tag(i64 _plus) : plus(_plus) {}
+
         bool isNull() {
             return plus == 0;
         }
