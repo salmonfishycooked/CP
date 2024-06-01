@@ -19,7 +19,6 @@
 
 using i64 = int64_t;
 
-template <typename T = int>
 class SegTree {
 public:
     struct Info {
@@ -34,7 +33,7 @@ public:
     };
     std::vector<Info> seg;
 
-    explicit SegTree(std::vector<T> &a) {
+    explicit SegTree(std::vector<i64> &a) {
         int n = a.size();
         seg.resize(n * 4);
 
@@ -56,7 +55,7 @@ public:
         seg[id] = seg[id * 2] + seg[id * 2 + 1];
     }
 
-    void change(int id, int l, int r, int pos, T val) {
+    void change(int id, int l, int r, int pos, i64 val) {
         if (l == r) {
             seg[id] = {val};
             return;
