@@ -1,5 +1,5 @@
 /**
- * 树状数组（Binary Indexed Tree）的实现
+ * 树状数组（Fenwick Tree, Binary Indexed Tree）的实现
  * 元素下标范围：[1, n]
  * 下面的实现是求前缀和实现
  *
@@ -14,12 +14,12 @@
 using i64 = int64_t;
 
 template <typename T = i64>
-class BIT {
+class Fenwick {
 public:
     int n;
     std::vector<T> tree;
 
-    explicit BIT(int _n) : n(_n) {
+    explicit Fenwick(int _n) : n(_n) {
         tree.assign(n + 1, 0);
     }
 
