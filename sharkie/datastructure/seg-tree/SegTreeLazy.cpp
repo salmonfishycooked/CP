@@ -69,7 +69,8 @@ public:
     }
 
     void update(int id) {
-        seg[id].info = combineInfoAndInfo(id * 2, id * 2 + 1);
+        int lc = id * 2, rc = lc + 1;
+        seg[id].info = combineInfoAndInfo(seg[lc].info, seg[lc].l, seg[lc].r, seg[rc].info, seg[rc].l, seg[rc].r);
     }
 
     void passTag(int id, const Tag &t) {
@@ -116,16 +117,13 @@ public:
         } else if (ql > mid) {
             return query(id * 2 + 1, ql, qr);
         } else {
-            return combineInfoAndInfo(query(id * 2, ql, mid), query(id * 2 + 1, mid + 1, qr));
+            Info info1 = query(id * 2, ql, mid), info2 = query(id * 2 + 1, mid + 1, qr);
+            return combineInfoAndInfo(info1, ql, mid, info2, mid + 1, qr);
         }
     }
 
 private:
-    Info combineInfoAndInfo(int id1, int id2) {
-        return combineInfoAndInfo(seg[id1].info, seg[id2].info);
-    }
-
-    Info combineInfoAndInfo(const Info &info1, const Info &info2) {
+    Info combineInfoAndInfo(const Info &info1, int l1, int r1, const Info &info2, int l2, int r2) {
         Info info;
         info.v = info1.v + info2.v;
 
