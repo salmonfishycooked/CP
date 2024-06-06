@@ -9,64 +9,56 @@
  * 参数说明：
  * 1. sum 代表 Prim 算法正确结束后（也就是原图连通），对应的最小生成树的所有边权之和
  *
- * 模板 template <typename T = int> 代表边权采用什么类型存储，默认为 int
- *
  * 时间复杂度: O(mlogn), 其中 n 为总点数， m 为总边数。
  */
 
 #include <bits/stdc++.h>
 
-template <typename T = int>
+using i64 = int64_t;
+
 class Prim {
 public:
+    int n;
+
     static constexpr int INF = INT_MAX;
 
     struct Edge {
-        int to;
-        T weight;
+        int to, w;
     };
-    int n;
     std::vector<std::vector<Edge>> adj;
 
-    T sum;
+    i64 sum;
 
     explicit Prim(int _n) : n(_n) {
         adj.assign(n + 1, {});
     }
 
-    void addEdge(int from, int to, T weight) {
-        adj[from].push_back({to, weight});
+    void addEdge(int u, int v, int w) {
+        adj[u].push_back({v, w});
     }
 
     bool go(int source) {
         sum = 0;
-        std::vector<T> dis(n + 1, INF);
-        dis[source] = 0;
 
+        std::vector<int> dist(n + 1, INF);
         std::vector<bool> vis(n + 1);
-        struct Node {
-            int id, weight;
-            bool operator< (const Node &a) const { return weight > a.weight; }
-        };
-        std::priority_queue<Node> q;
-        q.push({1, 0});
+        std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>> q;
+        q.emplace(0, 1);
         for (int i = 1; i <= n; i++) {
-            while (!q.empty() && vis[q.top().id]) {
+            while (!q.empty() && vis[q.top().second]) {
                 q.pop();
             }
-            if (q.empty()) {
-                return false;
-            }
+            if (q.empty()) { return false; }
 
-            int id = q.top().id;
-            sum += q.top().weight;
+            auto [dis, u] = q.top();
             q.pop();
-            vis[id] = true;
-            for (auto edge : adj[id]) {
-                int to = edge.to, weight = edge.weight;
-                if (vis[to] || dis[to] < weight) { continue; }
-                dis[to] = weight;
-                q.push({to, weight});
+            sum += dis;
+            vis[u] = true;
+
+            for (auto [v, w] : adj[u]) {
+                if (vis[v] || dist[v] <= w) { continue; }
+                dist[v] = w;
+                q.emplace(w, v);
             }
         }
 
