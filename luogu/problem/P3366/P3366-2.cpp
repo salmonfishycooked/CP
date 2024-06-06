@@ -7,57 +7,49 @@
 
 using i64 = int64_t;
 
-template <typename T = int>
 class Prim {
 public:
+    int n;
+
     static constexpr int INF = INT_MAX;
 
     struct Edge {
-        int to;
-        T weight;
+        int to, w;
     };
-    int n;
     std::vector<std::vector<Edge>> adj;
 
-    T sum;
+    i64 sum;
 
     explicit Prim(int _n) : n(_n) {
         adj.assign(n + 1, {});
     }
 
-    void addEdge(int from, int to, T weight) {
-        adj[from].push_back({to, weight});
+    void addEdge(int u, int v, int w) {
+        adj[u].push_back({v, w});
     }
 
     bool go(int source) {
         sum = 0;
-        std::vector<T> dis(n + 1, INF);
-        dis[source] = 0;
 
+        std::vector<int> dist(n + 1, INF);
         std::vector<bool> vis(n + 1);
-        struct Node {
-            int id, weight;
-            bool operator< (const Node &a) const { return weight > a.weight; }
-        };
-        std::priority_queue<Node> q;
-        q.push({1, 0});
+        std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>> q;
+        q.emplace(0, 1);
         for (int i = 1; i <= n; i++) {
-            while (!q.empty() && vis[q.top().id]) {
+            while (!q.empty() && vis[q.top().second]) {
                 q.pop();
             }
-            if (q.empty()) {
-                return false;
-            }
+            if (q.empty()) { return false; }
 
-            int id = q.top().id;
-            sum += q.top().weight;
+            auto [dis, u] = q.top();
             q.pop();
-            vis[id] = true;
-            for (auto edge : adj[id]) {
-                int to = edge.to, weight = edge.weight;
-                if (vis[to] || dis[to] < weight) { continue; }
-                dis[to] = weight;
-                q.push({to, weight});
+            sum += dis;
+            vis[u] = true;
+
+            for (auto [v, w] : adj[u]) {
+                if (vis[v] || dist[v] <= w) { continue; }
+                dist[v] = w;
+                q.emplace(w, v);
             }
         }
 
@@ -66,18 +58,17 @@ public:
 };
 
 void solve() {
-    int N, M;
-    std::cin >> N >> M;
+    int n, m;
+    std::cin >> n >> m;
 
-    Prim prim(N);
-    for (int i = 0, u, v, w; i < M; i++) {
+    Prim prim(n);
+    for (int i = 0, u, v, w; i < m; i++) {
         std::cin >> u >> v >> w;
         prim.addEdge(u, v, w);
         prim.addEdge(v, u, w);
     }
 
-    bool connected = prim.go(1);
-    if (!connected) {
+    if (!prim.go(1)) {
         std::cout << "orz" << '\n';
         return;
     }
