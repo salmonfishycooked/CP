@@ -4,42 +4,43 @@ using i64 = int64_t;
 
 std::vector<int> next;
 
-std::vector<int> kmp(const std::string &s1, const std::string &s2) {
-    int n = s1.size(), m = s2.size();
+std::vector<int> kmp(const std::string &str, const std::string &pat) {
+    int n = (int) str.size(), m = (int) pat.size();
 
     next.resize(m);
+    next[0] = 0;
     for (int i = 1; i < m; i++) {
         int j = next[i - 1];
-        while (j > 0 && s2[i] != s2[j]) {
+        while (j > 0 && pat[j] != pat[i]) {
             j = next[j - 1];
         }
 
-        if (j == 0 && s2[i] != s2[0]) {
+        if (pat[j] != pat[i]) {
             next[i] = 0;
             continue;
         }
         next[i] = j + 1;
     }
 
-    std::vector<int> ret;
+    std::vector<int> ans;
     for (int i = 0, j = 0; i < n; i++) {
-        if (s1[i] == s2[j]) {
+        if (str[i] == pat[j]) {
             j += 1;
             if (j == m) {
-                ret.push_back(i - m + 1);
+                ans.push_back(i - m + 1);
                 i = i - m + 1;
                 j = 0;
             }
             continue;
         }
 
-        while (j > 0 && s1[i] != s2[j]) {
+        while (j > 0 && str[i] != pat[j]) {
             j = next[j - 1];
         }
-        if (s1[i] == s2[j]) { j += 1; }
+        if (str[i] == pat[j]) { j += 1; }
     }
 
-    return ret;
+    return ans;
 }
 
 void solve() {
@@ -49,7 +50,6 @@ void solve() {
     for (auto pos : kmp(s1, s2)) {
         std::cout << pos + 1 << '\n';
     }
-
     for (auto v : next) {
         std::cout << v << ' ';
     }
