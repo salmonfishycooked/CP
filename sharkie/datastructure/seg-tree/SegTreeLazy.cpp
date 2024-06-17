@@ -3,6 +3,8 @@
  * 区间修改，区间查询（分治）
  * 数组元素编号：1~n，注意传入的数组元素编号是从 0 开始的，长度为 n。
  *
+ * ⚠️注意：树根节点编号为 1
+ *
  * 方法说明：
  * 1. void modify(int id, int ql, int qr, const Tag &tag)，将 [ql, qr] 区间内所有数进行修改，最后一个参数是修改需要的相关值。
  * 2. Info query(int id, int ql, int qr)，查询区间 [ql, qr] 上的信息。
