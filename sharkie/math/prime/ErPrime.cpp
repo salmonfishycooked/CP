@@ -9,7 +9,7 @@
 
 #include <bits/stdc++.h>
 
-using i64 = int64_t;
+using i64 = long long;
 
 class ErPrime {
 public:

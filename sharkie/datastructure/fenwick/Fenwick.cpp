@@ -11,7 +11,7 @@
 
 #include <bits/stdc++.h>
 
-using i64 = int64_t;
+using i64 = long long;
 
 template <typename T = i64>
 class Fenwick {
