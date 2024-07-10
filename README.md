@@ -6,7 +6,34 @@
 
 ## ⚒️ Some useful data structure template
 
-such as **heap**, **segment tree**, **Fenwick Tree**, **rmq**, **trie tree**, **SCC**, **2-SAT**...
+### Data Structure
+
+- Fenwick Tree
+- RMQ
+- Segment Tree
+- Spread
+- Trie
+- UF (Union Find)
+
+### Graph
+
+- MST (Minimal Spanning Tree)
+- Shortest Path
+- SCC (Strongly Connected Component)
+- 2-SAT (2-Satisfiability) 
+
+### String
+
+- KMP
+- Aho-Corasick Automaton
+
+### Math
+
+- Big Integer
+- Mod Inverse
+- Prime Algorithm
+- Fast Power
+
 
 
 
