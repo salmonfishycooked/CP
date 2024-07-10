@@ -15,14 +15,13 @@ public:
         }
     };
 
-    int sz;
     std::vector<Node> nodes;
     static constexpr int ROOT = 0;
     static constexpr int NONE = -1;
 
     std::vector<int> bfsOrder;
 
-    explicit AhoCorasick() : sz(1) {
+    explicit AhoCorasick() {
         nodes.emplace_back();
     }
 
@@ -31,7 +30,7 @@ public:
         for (auto ch : pat) {
             int next = ch - start;
             if (nodes[cur].children[next] == NONE) {
-                nodes[cur].children[next] = sz++;
+                nodes[cur].children[next] = nodes.size();
                 nodes.emplace_back();
             }
             cur = nodes[cur].children[next];
@@ -83,7 +82,7 @@ void solve() {
     std::string s;
     std::cin >> s;
 
-    std::vector<int> cnt(ac.sz);
+    std::vector<int> cnt(ac.nodes.size());
     int cur = ac.ROOT;
     for (auto ch : s) {
         if (ch == 0) {
