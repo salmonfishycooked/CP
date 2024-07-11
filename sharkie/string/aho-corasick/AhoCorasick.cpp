@@ -59,7 +59,7 @@ public:
             for (int i = 0; i < sigma; i++) {
                 if (nodes[cur].children[i] != NONE) {
                     nodes[cur].go[i] = nodes[cur].children[i];
-                    if (cur != ROOT) {
+                    if (cur == ROOT) {
                         nodes[nodes[cur].children[i]].fail = ROOT;
                     } else {
                         nodes[nodes[cur].children[i]].fail = nodes[nodes[cur].fail].go[i];
