@@ -1,12 +1,15 @@
-// 区间最值查询 - RMQ
-// Sparse Table
-// 数组编号从 0 开始，即 [0, n)
-// 建立 ST 的时间复杂度 O(nlogn)，查询最值操作的时间复杂度 O(1)
-
-// f[i][j] 表示区间 [j, j + 2^i - 1] 上的最值
-
-// SparseTable 构造函数应该传入需要被建立 ST 表的数组
-// query 查询 [from, to] 上的最值
+/**
+ * 区间最值查询 - RMQ
+ * Sparse Table
+ * 数组编号从 0 开始，即 [0, n)
+ * 建立 ST 的时间复杂度 O(nlogn)，查询最值操作的时间复杂度 O(1)
+ *
+ * 方法说明：
+ * 1. SparseTable 构造函数应该传入需要被建立 ST 表的数组
+ * 2. int query(int from, int to) 查询 [from, to] 上的信息
+ *
+ * 下面给出的模板中，f[i][j] 表示区间 [j, j + 2^i - 1] 上的最大值，故 query 返回的信息是区间最大值
+ */
 
 #include <bits/stdc++.h>
 
