@@ -14,7 +14,7 @@ public:
     int n;
     std::vector<int> fa;
 
-    explicit UnionFind(int _n) : n(_n) {
+    explicit UnionFind(int n) : n(n) {
         fa.resize(n + 1);
         for (int i = 1; i <= n; i++) {
             fa[i] = i;
