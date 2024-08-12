@@ -26,8 +26,7 @@ public:
     std::vector<int> dist;
     std::vector<int> pre;
 
-    explicit Dijkstra(int n) {
-        this->n = n;
+    explicit Dijkstra(int n) : n(n) {
         adj.assign(n + 1, {});
     }
 
