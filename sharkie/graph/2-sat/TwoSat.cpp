@@ -37,6 +37,7 @@ public:
 
     bool satisfiable() {
         tarjan();
+
         for (int i = 1; i <= n; i++) {
             if (belong[2 * i - 1] == belong[2 * i]) {
                 return false;
