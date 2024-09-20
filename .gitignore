@@ -12,11 +12,14 @@ main.dSYM
 /ans.cpp
 /ans.exe
 /ans.out
+/ans
 
 /generator.cpp
 /generator.exe
+/generator
 
 /judge.cpp
 /judge.exe
+/judge
 
 /e.in
