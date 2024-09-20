@@ -9,6 +9,9 @@
  * 4. std::pair<T, int> top()，取得堆顶元素，pair 的第一个元素为值，第二个元素为其编号，即 id。
  * 5. std::pair<T, int> getById(int id)，返回编号为 id 的节点情况。
  * 6. void modify(int id, const T &v)，修改编号为 id 的节点的值。
+ *
+ * 特别说明：
+ * 模板 Compare = std::less<> 是大顶堆，Compare = std::greater<> 是小顶堆
  */
 
 #include <bits/stdc++.h>
