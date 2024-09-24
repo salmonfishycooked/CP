@@ -13,18 +13,21 @@
 
 #include <bits/stdc++.h>
 
+using i64 = long long;
+
 class Dijkstra {
 public:
-    static constexpr int INF = INT_MAX;
-
     int n;
     struct Edge {
-        int to, weight;
+        int to;
+        i64 w;
     };
     std::vector<std::vector<Edge>> adj;
 
-    std::vector<int> dist;
+    std::vector<i64> dist;
     std::vector<int> pre;
+
+    static constexpr i64 INF = LONG_LONG_MAX / 2;
 
     explicit Dijkstra(int n) : n(n) {
         adj.assign(n + 1, {});
@@ -41,32 +44,23 @@ public:
         std::vector<bool> vis(n + 1, false);
         dist[source] = 0;
 
-        struct Node {
-            int id, dis;
-        };
-        struct cmp {
-            bool operator()(Node &a, Node &b) {
-                return a.dis > b.dis;
-            }
-        };
-        std::priority_queue<Node, std::vector<Node>, cmp> q;
-
-        q.push({source, 0});
+        std::priority_queue<std::pair<i64, int>, std::vector<std::pair<i64, int>>,std::greater<>> q;
+        q.emplace(0, source);
         for (int i = 1; i <= n; i++) {
-            while (!q.empty() && vis[q.top().id]) {
+            while (!q.empty() && vis[q.top().second]) {
                 q.pop();
             }
             if (q.empty()) { break; }
 
-            int u = q.top().id;
+            int u = q.top().second;
             q.pop();
             vis[u] = true;
             for (auto edge : adj[u]) {
-                int to = edge.to, weight = edge.weight;
-                if (dist[u] + weight < dist[to]) {
-                    dist[to] = dist[u] + weight;
+                int to = edge.to;
+                if (dist[to] > dist[u] + edge.w) {
+                    dist[to] = dist[u] + edge.w;
                     pre[to] = u;
-                    q.push({to, dist[to]});
+                    q.emplace(dist[to], to);
                 }
             }
         }
