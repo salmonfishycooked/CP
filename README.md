@@ -17,7 +17,7 @@
 
 ### Graph
 
-- MST (Minimal Spanning Tree)
+- MST (Minimum Spanning Tree)
 - Shortest Path
 - SCC (Strongly Connected Component)
 - 2-SAT (2-Satisfiability) 

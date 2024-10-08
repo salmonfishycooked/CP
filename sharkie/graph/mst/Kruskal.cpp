@@ -1,5 +1,5 @@
 /**
- * 最小生成树 (Minimal Spanning Tree)
+ * 最小生成树 (Minimum Spanning Tree)
  * Kruskal 算法
  * 节点编号：1 ~ n
  *

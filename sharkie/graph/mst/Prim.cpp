@@ -1,5 +1,5 @@
 /**
- * 最小生成树 (Minimal Spanning Tree)
+ * 最小生成树 (Minimum Spanning Tree)
  * Prim 算法 - 堆优化版本
  * 节点编号：1 ~ n
  *
@@ -9,7 +9,7 @@
  * 参数说明：
  * 1. sum 代表 Prim 算法正确结束后（也就是原图连通），对应的最小生成树的所有边权之和
  *
- * 时间复杂度: O(mlogn), 其中 n 为总点数， m 为总边数。
+ * 时间复杂度: O(mlogn)。其中 n 为总点数，m 为总边数。
  */
 
 #include <bits/stdc++.h>
