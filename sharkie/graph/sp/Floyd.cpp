@@ -14,12 +14,11 @@ using i64 = long long;
 
 class Floyd {
 public:
+    constexpr static i64 INF = LONG_LONG_MAX / 2;
+
     int n;
     std::vector<std::vector<i64>> mat;
-
     std::vector<std::vector<i64>> dist;
-
-    constexpr static i64 INF = LONG_LONG_MAX / 2;
 
     explicit Floyd(int n) : n(n) {
         mat.assign(n + 1, std::vector<i64>(n + 1, INF));
