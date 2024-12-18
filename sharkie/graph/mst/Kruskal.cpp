@@ -9,53 +9,53 @@
  * 参数说明：
  * 1. sum 代表 Kruskal 算法正确结束后（也就是原图连通），对应的最小生成树的所有边权之和
  *
- * 模板 template <typename T = int> 代表边权采用什么类型存储，默认为 int
- *
  * 时间复杂度: O(mlogm), 其中 m 为总边数。
  */
 
 #include <bits/stdc++.h>
+
+using i64 = long long;
 
 class UnionFind {
 public:
     int n;
     std::vector<int> fa;
 
-    explicit UnionFind(int _n) : n(_n) {
+    explicit UnionFind(const int n) : n(n) {
         fa.resize(n + 1);
         for (int i = 1; i <= n; i++) {
             fa[i] = i;
         }
     }
 
-    void _union(int u, int v) {
-        int uFa = find(u), vFa = find(v);
-        fa[vFa] = uFa;
-    }
-
-    int find(int u) {
+    int find(const int u) {
         if (fa[u] != u) {
             return fa[u] = find(fa[u]);
         }
+
         return u;
+    }
+
+    void _union(const int u, const int v) {
+        const int uFa = find(u), vFa = find(v);
+        fa[vFa] = uFa;
     }
 };
 
-template <typename T = int>
 class Kruskal {
 public:
     struct Edge {
         int from, to;
-        T weight;
+        i64 w;
     };
     int n;
     std::vector<Edge> edges;
 
-    T sum;
+    i64 sum;
 
     explicit Kruskal(int _n) : n(_n) {}
 
-    void addEdge(int from, int to, T weight) {
+    void addEdge(int from, int to, i64 weight) {
         edges.push_back({from, to, weight});
     }
 
@@ -63,23 +63,23 @@ public:
         UnionFind uf(n);
 
         std::sort(edges.begin(), edges.end(), [&](const Edge &a, const Edge &b) -> bool {
-            return a.weight < b.weight;
+            return a.w < b.w;
         });
 
-        int cnt = 0;
+        int tot = n;
         sum = 0;
-        for (auto edge : edges) {
-            int from = edge.from, to = edge.to, weight = edge.weight;
+        for (auto &edge : edges) {
+            int from = edge.from, to = edge.to;
             if (uf.find(from) != uf.find(to)) {
                 uf._union(from, to);
-                sum += weight;
-                cnt += 1;
+                sum += edge.w;
+                tot -= 1;
             }
-            if (cnt == n - 1) {
+            if (tot == 1) {
                 break;
             }
         }
 
-        return cnt == n - 1;
+        return tot == 1;
     }
 };
