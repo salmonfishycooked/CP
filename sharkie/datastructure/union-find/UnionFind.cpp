@@ -14,22 +14,23 @@ public:
     int n;
     std::vector<int> fa;
 
-    explicit UnionFind(int n) : n(n) {
+    explicit UnionFind(const int n) : n(n) {
         fa.resize(n + 1);
         for (int i = 1; i <= n; i++) {
             fa[i] = i;
         }
     }
 
-    void _union(int u, int v) {
-        int uFa = find(u), vFa = find(v);
-        fa[vFa] = uFa;
-    }
-
-    int find(int u) {
+    int find(const int u) {
         if (fa[u] != u) {
             return fa[u] = find(fa[u]);
         }
+
         return u;
+    }
+
+    void _union(const int u, const int v) {
+        const int uFa = find(u), vFa = find(v);
+        fa[vFa] = uFa;
     }
 };
