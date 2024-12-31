@@ -79,6 +79,9 @@ public:
         }
     }
 
+    int size() { return sz; }
+
+private:
     int allocateId() {
         sz += 1;
         if (!spareIds.empty()) {
@@ -89,8 +92,6 @@ public:
         nodes.push_back(Node());
         return nodes.size() - 1;
     }
-
-    int size() { return sz; }
 };
 
 void solve() {
