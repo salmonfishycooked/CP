@@ -27,8 +27,7 @@ public:
         std::vector<int> pre(n + 1, -1);
         std::vector<i64> weigh(n + 1, 0);
 
-        int stkPtr = -1;
-        std::vector<int> stk(n + 1);
+        std::stack<int> stk;
         std::vector<bool> vis(n + 1, false);
         std::vector<bool> inStack(n + 1, false);
 
@@ -58,10 +57,10 @@ public:
                 for (int curBlock = block; curBlock != -1; curBlock = pre[curBlock]) {
                     if (inStack[curBlock]) {
                         loopCnt += 1;
-                        while (stk[stkPtr] != curBlock) {
-                            belong[stk[stkPtr]] = loopCnt;
-                            inStack[stk[stkPtr]] = false;
-                            stkPtr -= 1;
+                        while (stk.top() != curBlock) {
+                            belong[stk.top()] = loopCnt;
+                            inStack[stk.top()] = false;
+                            stk.pop();
                         }
                         belong[curBlock] = loopCnt;
                         break;
@@ -70,12 +69,12 @@ public:
 
                     vis[curBlock] = true;
                     inStack[curBlock] = true;
-                    stk[++stkPtr] = curBlock;
+                    stk.push(curBlock);
                 }
 
-                while (stkPtr >= 0) {
-                    inStack[stk[stkPtr]] = false;
-                    stkPtr -= 1;
+                while (!stk.empty()) {
+                    inStack[stk.top()] = false;
+                    stk.pop();
                 }
             }
             if (loopCnt == 0) { break; }
