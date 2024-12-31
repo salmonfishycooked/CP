@@ -66,7 +66,7 @@ public:
     void splice(int id, int fromId, int toId) {
         int next;
         for (int cur = fromId; cur != toId; cur = next) {
-            if (cur == id) { break;}
+            if (cur == id) { break; }
             next = nodes[cur].next;
 
             nodes[nodes[cur].prev].next = nodes[cur].next;
