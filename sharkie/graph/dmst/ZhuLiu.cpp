@@ -12,7 +12,6 @@
  * 时间复杂度: O(nm)。其中 n 为总顶点数，m 为总边数。
  */
 
-
 #include <bits/stdc++.h>
 
 using i64 = long long;
