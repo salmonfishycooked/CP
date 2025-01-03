@@ -2,8 +2,6 @@
 
 using i64 = long long;
 
-int f[20][1 << 20];
-
 class Solution {
 public:
     void solve() {
@@ -41,11 +39,7 @@ public:
         }
 
         int allSet = (1 << n) - 1;
-        for (int i = 0; i < n; i++) {
-            for (int j = allSet; j >= 0; j--) {
-                f[i][j] = INT_MAX / 2;
-            }
-        }
+        std::vector f(n, std::vector<int>(1 << n, INT_MAX / 2));
         for (int i = 0; i < n; i++) { f[i][allSet] = 0; }
         for (int msk = allSet - 1; msk >= 0; msk--) {
             for (int pre = 0; pre < n; pre++) {
