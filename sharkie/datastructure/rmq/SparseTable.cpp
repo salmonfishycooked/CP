@@ -18,9 +18,11 @@ public:
     int n;
     std::vector<std::vector<int>> f;
 
-    SparseTable(std::vector<int> &arr) {
-        n = (int)arr.size();
-        int k = (int)std::log2(n);
+    explicit SparseTable(std::vector<int> &arr) {
+        n = (int) arr.size();
+        if (n == 0) { return; }
+
+        int k = (int) std::log2(n);
         f.assign(k + 1, std::vector<int>(n));
         f[0] = arr;
         for (int i = 1; i <= k; i++) {
@@ -32,7 +34,7 @@ public:
 
     int query(int from, int to) {
         assert(from >= 0 && from <= to && to < n);
-        int k = (int)std::log2(to - from + 1);
+        int k = (int) std::log2(to - from + 1);
         return std::max(f[k][from], f[k][to - (1 << k) + 1]);
     }
 };
