@@ -26,7 +26,7 @@ public:
         return me;
     }
 
-    void calc1(int cur) {
+    void calc1() {
         weight.assign(tree.size(), 0);
         auto dfs = [&](auto self, int cur) -> void {
             if (cur == ROXY) { return; }
@@ -54,7 +54,7 @@ public:
     void solve() {
         init();
         buildTree();
-        calc1(ROOT);
+        calc1();
 
         std::cout << (isBalanced(ROOT) ? "YES" : "NO") << '\n';
     }
