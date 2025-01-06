@@ -39,15 +39,13 @@ public:
     }
 
     bool isBalanced(int cur) {
-        if (cur == ROXY) { return true; }
-
         auto &node = tree[cur];
         if (node.weightL != 0 && node.weightR != 0) { return node.weightL * node.disL == node.weightR * node.disR; }
         if (node.weightL == 0 && node.weightR != 0) {
-            return isBalanced(node.right) && node.weightL * node.disL == weight[node.right] * node.disR;
+            return isBalanced(node.left) && weight[node.left] * node.disL == node.weightR * node.disR;
         }
         if (node.weightL != 0 && node.weightR == 0) {
-            return isBalanced(node.right) && weight[node.left] * node.disL == node.weightR * node.disR;
+            return isBalanced(node.right) && node.weightL * node.disL == weight[node.right] * node.disR;
         }
 
         return isBalanced(node.left) && isBalanced(node.right) && weight[node.left] * node.disL == weight[node.right] * node.disR;
