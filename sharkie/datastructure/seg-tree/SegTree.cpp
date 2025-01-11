@@ -71,11 +71,8 @@ public:
         }
 
         int mid = (l + r) >> 1;
-        if (pos <= mid) {
-            change(id * 2, pos, val);
-        } else {
-            change(id * 2 + 1, pos, val);
-        }
+        if (pos <= mid) { change(id * 2, pos, val); }
+        else { change(id * 2 + 1, pos, val); }
         update(id);
     }
 
@@ -86,14 +83,11 @@ public:
         }
 
         int mid = (l + r) >> 1;
-        if (qr <= mid) {
-            return query(id * 2, ql, qr);
-        } else if (ql > mid) {
-            return query(id * 2 + 1, ql, qr);
-        } else {
-            Info info1 = query(id * 2, ql, mid), info2 = query(id * 2 + 1, mid + 1, qr);
-            return combineInfoAndInfo(info1, ql, mid, info2, mid + 1, qr);
-        }
+        if (qr <= mid) { return query(id * 2, ql, qr); }
+        if (ql > mid) { return query(id * 2 + 1, ql, qr); }
+
+        Info info1 = query(id * 2, ql, mid), info2 = query(id * 2 + 1, mid + 1, qr);
+        return combineInfoAndInfo(info1, ql, mid, info2, mid + 1, qr);
     }
 
 private:
