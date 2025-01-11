@@ -31,13 +31,8 @@ public:
         Tag() : plus(0) {}
         Tag(i64 _plus) : plus(_plus) {}
 
-        bool isNull() {
-            return plus == 0;
-        }
-
-        void clear() {
-            plus = 0;
-        }
+        bool isNull() { return plus == 0; }
+        void clear() { plus = 0; }
     };
 
     struct Info {
@@ -96,11 +91,9 @@ public:
 
         downTag(id);
         int mid = (seg[id].l + seg[id].r) >> 1;
-        if (qr <= mid) {
-            modify(id * 2, ql, qr, tag);
-        } else if (ql > mid) {
-            modify(id * 2 + 1, ql, qr, tag);
-        } else {
+        if (qr <= mid) { modify(id * 2, ql, qr, tag); }
+        else if (ql > mid) { modify(id * 2 + 1, ql, qr, tag); }
+        else {
             modify(id * 2, ql, mid, tag);
             modify(id * 2 + 1, mid + 1, qr, tag);
         }
@@ -108,17 +101,13 @@ public:
     }
 
     Info query(int id, int ql, int qr) {
-        if (seg[id].l == ql && seg[id].r == qr) {
-            return seg[id].info;
-        }
+        if (seg[id].l == ql && seg[id].r == qr) { return seg[id].info; }
 
         downTag(id);
         int mid = (seg[id].l + seg[id].r) >> 1;
-        if (qr <= mid) {
-            return query(id * 2, ql, qr);
-        } else if (ql > mid) {
-            return query(id * 2 + 1, ql, qr);
-        } else {
+        if (qr <= mid) { return query(id * 2, ql, qr); }
+        else if (ql > mid) { return query(id * 2 + 1, ql, qr); }
+        else {
             Info info1 = query(id * 2, ql, mid), info2 = query(id * 2 + 1, mid + 1, qr);
             return combineInfoAndInfo(info1, ql, mid, info2, mid + 1, qr);
         }
