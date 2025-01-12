@@ -33,7 +33,7 @@ public:
     }
 
     int query(int from, int to) {
-        assert(from >= 0 && from <= to && to < n);
+        // assert(from >= 0 && from <= to && to < n);
         int k = (int) std::log2(to - from + 1);
         return std::max(f[k][from], f[k][to - (1 << k) + 1]);
     }
