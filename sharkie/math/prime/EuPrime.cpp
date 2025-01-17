@@ -18,9 +18,7 @@ public:
 
         std::vector<bool> vis(n + 1);
         for (int i = 2; i <= n; i++) {
-            if (!vis[i]) {
-                prime.push_back(i);
-            }
+            if (!vis[i]) { prime.push_back(i); }
             for (auto num : prime) {
                 int v = i * num;
                 if (v > n) { break; }
