@@ -17,9 +17,7 @@ public:
 
     void cal(int n) {
         prime.resize(0);
-        if (n >= 2) {
-            prime.push_back(2);
-        }
+        if (n >= 2) { prime.push_back(2); }
 
         std::vector<bool> vis(n + 1);
         for (int i = 3; i <= n; i += 2) {
