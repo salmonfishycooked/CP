@@ -6,6 +6,7 @@
  * 1. int go(const std::string &ori) 返回字符串 ori 的最大回文子串长度
  *      此时 mxIdx 记录添加#后的字符串中拥有最大回文半径的字符下标，数组 r 则记录添加#后的字符串每个下标的最大回文半径。
  *      若要获得原字符串的最大回文子串，调用 s.substr(manacher.mxIdx / 2 - mxLen / 2, mxLen) 即可。(mxLen 为原串最大回文子串长度)
+ *      判断原字符串[l, r]区间是否是回文，即判断 r[l + r + 1] - 1 >= b - a + 1。(因为 l + r + 1 对应添加#后的字符串的原[l, r]的回文中心)
  */
 
 #include <bits/stdc++.h>
