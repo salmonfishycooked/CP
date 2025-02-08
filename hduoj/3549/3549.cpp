@@ -2,7 +2,7 @@
 
 using i64 = long long;
 
-class Graph {
+class EK {
 public:
     static constexpr int NULLPTR = -1;
     struct Edge { int to, next, cap, flow; };
@@ -11,7 +11,7 @@ public:
     std::vector<Edge> edges;
     std::vector<int> head;
 
-    Graph(int n) : n(n) { head.assign(n + 1, NULLPTR); }
+    EK(int n) : n(n) { head.assign(n + 1, NULLPTR); }
 
     void addEdge(int u, int v, int w) {
         edges.push_back({v, head[u], w, 0});
@@ -66,13 +66,13 @@ public:
         int n, m;
         std::cin >> n >> m;
 
-        Graph graph(n);
+        EK ek(n);
         for (int i = 0, u, v, w; i < m; i++) {
             std::cin >> u >> v >> w;
-            graph.addEdge(u, v, w);
+            ek.addEdge(u, v, w);
         }
 
-        std::cout << "Case " << round << ": " << graph.go(1, n) << '\n';
+        std::cout << "Case " << round << ": " << ek.go(1, n) << '\n';
     }
 };
 
