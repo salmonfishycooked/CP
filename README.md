@@ -21,6 +21,7 @@
 - Shortest Path
 - SCC (Strongly Connected Component)
 - 2-SAT (2-Satisfiability) 
+- Flow-Network Algorithm
 
 ### String
 
