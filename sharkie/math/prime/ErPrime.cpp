@@ -23,7 +23,7 @@ public:
         for (int i = 3; i <= n; i += 2) {
             if (vis[i]) { continue; }
             prime.push_back(i);
-            for (i64 next = (i64) i * i; next <= n; next += i) { vis[next] = true; }
+            for (int next = i + i; next <= n; next += i) { vis[next] = true; }
         }
     }
 };
