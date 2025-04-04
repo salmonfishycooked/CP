@@ -22,7 +22,6 @@ public:
     }
 };
 
-
 class Solution {
 public:
     EuPrime eu;
