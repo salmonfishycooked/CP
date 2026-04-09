@@ -6,7 +6,7 @@ const i64 MOD = 998244353;
 
 i64 f[2][5][5][5][5];
 
-inline int getV(int pos,int idx) {
+inline int getV(const int pos, const int idx) {
     static int odd[5] = {1, 3, 5, 7, 9};
     static int even[5] = {0, 2, 4, 6, 8};
 
